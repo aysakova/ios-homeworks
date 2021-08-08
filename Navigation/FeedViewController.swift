@@ -15,8 +15,10 @@ class FeedViewController: UIViewController {
         let goToPostButton = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 40))
         goToPostButton.setTitle("Go to post", for: .normal)
         goToPostButton.backgroundColor = .gray
+        goToPostButton.center = view.center
         goToPostButton.addTarget(self, action: #selector(goToPost), for: .touchUpInside)
        
+        
         view.addSubview(goToPostButton)
     }
     
