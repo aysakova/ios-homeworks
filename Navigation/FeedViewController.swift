@@ -1,31 +1,69 @@
 //
-//  FeedViewController.swift
+//  ViewController.swift
 //  Navigation
 //
-//  Created by Aysa Minkova on 2021/08/06.
+//  Created by Artem Novichkov on 12.09.2020.
+//  Copyright © 2020 Artem Novichkov. All rights reserved.
 //
 
 import UIKit
 
-class FeedViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let goToPostButton = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 40))
-        goToPostButton.setTitle("Go to post", for: .normal)
-        goToPostButton.backgroundColor = .gray
-        goToPostButton.center = view.center
-        goToPostButton.addTarget(self, action: #selector(goToPost), for: .touchUpInside)
-       
-        
-        view.addSubview(goToPostButton)
+final class FeedViewController: UIViewController {
+    
+    let post: Post = Post(title: "Пост")
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        print(type(of: self), #function)
     }
     
-    @objc func goToPost() {
-        let vc = PostViewController(postTitle: post.title)
-        self.navigationController?.pushViewController(vc, animated: true)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        print(type(of: self), #function)
     }
-
-    let post = Post(title: "New post")
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(type(of: self), #function)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print(type(of: self), #function)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print(type(of: self), #function)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "post" else {
+            return
+        }
+        guard let postViewController = segue.destination as? PostViewController else {
+            return
+        }
+        postViewController.post = post
+    }
 }

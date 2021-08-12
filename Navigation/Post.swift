@@ -2,11 +2,11 @@
 //  Post.swift
 //  Navigation
 //
-//  Created by Aysa Minkova on 2021/08/06.
+//  Created by Artem Novichkov on 12.09.2020.
+//  Copyright © 2020 Artem Novichkov. All rights reserved.
 //
 
-import Foundation
-
 struct Post {
-   let title: String
+    
+    let title: String
 }
