@@ -12,6 +12,7 @@ import UIKit
 class ProfileVIewController: UIViewController {
     
     let headerView = ProfileHeaderView()
+    let newButton = UIButton()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -25,54 +26,26 @@ class ProfileVIewController: UIViewController {
         
     override func viewDidLoad() {
         self.view.backgroundColor = .lightGray
-            view.addSubview(headerView)
-    }
-
-
-    
-    override func viewWillLayoutSubviews() {
-        headerView.frame = view.frame
-        setupLayout()
-
-    }
-    
-    private func setupLayout() {
-        let avatar = headerView.avatarImage
-        avatar.layer.cornerRadius = avatar.frame.width / 2
-        avatar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(headerView)
+        view.addSubview(newButton)
         
-        let label = headerView.nameLabel
-        label.translatesAutoresizingMaskIntoConstraints = false
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         
-        let text = headerView.statusTextField
-        text.translatesAutoresizingMaskIntoConstraints = false
+        newButton.translatesAutoresizingMaskIntoConstraints = false
+        newButton.backgroundColor = .systemRed
+        newButton.setTitle("New button", for: .normal)
         
-        let button = headerView.showButton
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraint = view.safeAreaLayoutGuide
+        headerView.avatarImage.layer.cornerRadius = 60
         
         NSLayoutConstraint.activate([
-            avatar.topAnchor.constraint(equalTo: constraint.topAnchor, constant: 16),
-            avatar.leadingAnchor.constraint(equalTo: constraint.leadingAnchor, constant: 16),
-            avatar.widthAnchor.constraint(equalToConstant: 120),
-            avatar.heightAnchor.constraint(equalToConstant: 120),
+            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 220),
             
-            label.widthAnchor.constraint(equalToConstant: 200),
-            label.heightAnchor.constraint(equalToConstant: 30),
-            label.topAnchor.constraint(equalTo: constraint.topAnchor, constant: 27),
-            label.leadingAnchor.constraint(equalTo: constraint.leadingAnchor, constant: 150),
-            label.trailingAnchor.constraint(equalTo: constraint.trailingAnchor, constant: 16),
-
-            text.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -34),
-            text.leadingAnchor.constraint(equalTo: constraint.leadingAnchor, constant: 150),
-            text.trailingAnchor.constraint(equalTo: constraint.trailingAnchor, constant: 16),
-            
-            button.heightAnchor.constraint(equalToConstant: 50),
-            button.widthAnchor.constraint(equalToConstant: button.frame.width),
-            button.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 16),
-            button.leadingAnchor.constraint(equalTo: constraint.leadingAnchor, constant: 16),
-            button.trailingAnchor.constraint(equalTo: constraint.trailingAnchor, constant: -16)
-         ])
+            newButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            newButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
