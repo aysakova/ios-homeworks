@@ -28,10 +28,14 @@ class ProfileVIewController: UIViewController {
         self.view.backgroundColor = .lightGray
         view.addSubview(headerView)
         view.addSubview(newButton)
-        
         headerView.translatesAutoresizingMaskIntoConstraints = false
         
         newButton.translatesAutoresizingMaskIntoConstraints = false
+        newButton.backgroundColor = .systemRed
+        newButton.setTitle("New button", for: .normal)
+        
+        headerView.avatarImage.layer.cornerRadius = 60
+        
         newButton.backgroundColor = .systemRed
         newButton.setTitle("New button", for: .normal)
         
@@ -39,22 +43,8 @@ class ProfileVIewController: UIViewController {
         
         NSLayoutConstraint.activate([
             headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-        
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        newButton.backgroundColor = .systemRed
-        newButton.setTitle("New button", for: .normal)
-        
-        headerView.avatarImage.layer.cornerRadius = 60
-        
-        NSLayoutConstraint.activate([
-            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 220),
-            
             newButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             newButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
