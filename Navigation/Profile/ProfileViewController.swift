@@ -16,12 +16,12 @@ class ProfileVIewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print(type(of: self), #function)
+
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print(type(of: self), #function)
+
     }
         
     override func viewDidLoad() {
@@ -38,8 +38,7 @@ class ProfileVIewController: UIViewController {
         headerView.avatarImage.layer.cornerRadius = 60
         
         NSLayoutConstraint.activate([
-            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 220),
             

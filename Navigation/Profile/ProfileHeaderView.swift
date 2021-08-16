@@ -27,6 +27,7 @@ class ProfileHeaderView: UIView {
     lazy var stackViewAvatarNameStatus: UIStackView = {
         let stackViewAvatarNameStatus = UIStackView(arrangedSubviews: [avatarImage, stackViewNameStatus])
         stackViewAvatarNameStatus.axis = .horizontal
+        stackViewAvatarNameStatus.spacing = 16
         stackViewAvatarNameStatus.translatesAutoresizingMaskIntoConstraints = false
         return stackViewAvatarNameStatus
     }()
@@ -98,18 +99,14 @@ class ProfileHeaderView: UIView {
     private func setupConstraunts() {[
         avatarImage.widthAnchor.constraint(equalToConstant: 120),
         avatarImage.heightAnchor.constraint(equalToConstant: 120),
-        fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: (27 - 16)),
-     //   fullNameLabel.heightAnchor.constraint(equalToConstant: fullNameLabel.frame.height),
-        fullNameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
-        
+
+        stackViewNameStatus.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
         stackViewAvatarNameStatus.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
         stackViewAvatarNameStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//        stackViewNameStatus.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -16),
         setStatusButton.topAnchor.constraint(equalTo: stackViewAvatarNameStatus.bottomAnchor, constant: 16),
-        setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        setStatusButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        setStatusButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-        stackViewNameStatus.bottomAnchor.constraint(equalTo: stackViewAvatarNameStatus.bottomAnchor, constant: (34 - 16)),
 
     ].forEach{($0.isActive = true)
     }
