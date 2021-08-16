@@ -12,30 +12,32 @@ class ProfileHeaderView: UIView {
     
     override init(frame:CGRect) {
         super.init(frame: frame)
-        addSubview(stackViewAvatarNameStatus)
+        addSubview(avatarImage)
+        addSubview(stackViewNameStatus)
         addSubview(setStatusButton)
         setupConstraunts()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        addSubview(stackViewAvatarNameStatus)
+        addSubview(avatarImage)
+        addSubview(stackViewNameStatus)
         addSubview(setStatusButton)
         setupConstraunts()
     }
 
-    lazy var stackViewAvatarNameStatus: UIStackView = {
-        let stackViewAvatarNameStatus = UIStackView(arrangedSubviews: [avatarImage, stackViewNameStatus])
-        stackViewAvatarNameStatus.axis = .horizontal
-        stackViewAvatarNameStatus.spacing = 16
-        stackViewAvatarNameStatus.translatesAutoresizingMaskIntoConstraints = false
-        return stackViewAvatarNameStatus
-    }()
+//    lazy var stackViewAvatarNameStatus: UIStackView = {
+//        let stackViewAvatarNameStatus = UIStackView(arrangedSubviews: [avatarImage, stackViewNameStatus])
+//        stackViewAvatarNameStatus.axis = .horizontal
+//        stackViewAvatarNameStatus.translatesAutoresizingMaskIntoConstraints = false
+//        stackViewAvatarNameStatus.spacing = 16
+//        return stackViewAvatarNameStatus
+//    }()
     
     lazy var stackViewNameStatus: UIStackView = {
         let stackViewNameStatus = UIStackView(arrangedSubviews: [fullNameLabel, statusLabel, statusTextField])
         stackViewNameStatus.axis = .vertical
-        stackViewNameStatus.spacing = 16
+//        stackViewNameStatus.spacing =
         stackViewNameStatus.translatesAutoresizingMaskIntoConstraints = false
         return stackViewNameStatus
     }()
@@ -72,10 +74,15 @@ class ProfileHeaderView: UIView {
     
     lazy var statusTextField: UITextField = {
         let statusTextField = UITextField()
-        statusTextField.textColor = UIColor.gray
-        statusTextField.borderStyle = .none
+        statusTextField.textColor = .black
+        statusTextField.backgroundColor = .white
+        statusTextField.layer.borderColor = UIColor.black.cgColor
+        statusTextField.layer.borderWidth = 1
+        statusTextField.layer.cornerRadius = 14
         statusTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusTextField.placeholder = "Write something here..."
+        statusTextField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10, height: 40))
+        statusTextField.leftViewMode = .always
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return statusTextField
@@ -99,13 +106,19 @@ class ProfileHeaderView: UIView {
     private func setupConstraunts() {[
         avatarImage.widthAnchor.constraint(equalToConstant: 120),
         avatarImage.heightAnchor.constraint(equalToConstant: 120),
-        stackViewAvatarNameStatus.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
-        stackViewAvatarNameStatus.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        setStatusButton.topAnchor.constraint(equalTo: stackViewAvatarNameStatus.bottomAnchor, constant: 16),
+        statusLabel.heightAnchor.constraint(equalToConstant: 30),
+        statusTextField.heightAnchor.constraint(equalToConstant: 40),
+        statusTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+        avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
+        avatarImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        
+        stackViewNameStatus.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
+        stackViewNameStatus.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
+        stackViewNameStatus.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+        setStatusButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 30),
         setStatusButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
         setStatusButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-        setStatusButton.topAnchor.constraint(equalTo: stackViewAvatarNameStatus.bottomAnchor, constant: 16),
         setStatusButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
         setStatusButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         setStatusButton.heightAnchor.constraint(equalToConstant: 50),
