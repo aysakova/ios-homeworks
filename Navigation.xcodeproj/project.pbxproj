@@ -18,7 +18,6 @@
 		060782CA250CEE7200A87020 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
 		6A62792726C0F6790067030F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A62792626C0F6790067030F /* ProfileViewController.swift */; };
 		6AFC1B1C26C5569A004C8A87 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC1B1B26C5569A004C8A87 /* ProfileHeaderView.swift */; };
-		6AFC1B1E26C5573D004C8A87 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AFC1B1D26C5573D004C8A87 /* ProfileHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		060782C9250CEE7200A87020 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6A62792626C0F6790067030F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6AFC1B1B26C5569A004C8A87 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		6AFC1B1D26C5573D004C8A87 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				6A62792626C0F6790067030F /* ProfileViewController.swift */,
-				6AFC1B1D26C5573D004C8A87 /* ProfileHeaderView.xib */,
 				6AFC1B1B26C5569A004C8A87 /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
@@ -154,7 +151,6 @@
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
 				060782B9250CE27700A87020 /* Main.storyboard in Resources */,
-				6AFC1B1E26C5573D004C8A87 /* ProfileHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

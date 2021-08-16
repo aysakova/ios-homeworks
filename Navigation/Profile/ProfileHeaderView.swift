@@ -20,7 +20,6 @@ class ProfileHeaderView: UIView {
        return avatarImage
      }()
     
-    
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.text = "Badass cat"
@@ -36,6 +35,7 @@ class ProfileHeaderView: UIView {
         statusTextField.borderStyle = .none
         statusTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusTextField.placeholder = "Write something here..."
+        statusTextField.resignFirstResponder()
 
         return statusTextField
     }()
@@ -69,11 +69,46 @@ class ProfileHeaderView: UIView {
         addSubview(nameLabel)
         addSubview(statusTextField)
         addSubview(showButton)
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        statusTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        showButton.translatesAutoresizingMaskIntoConstraints = false
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarImage.widthAnchor.constraint(equalToConstant: 120),
+            avatarImage.heightAnchor.constraint(equalToConstant: 120),
+            
+            nameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
+            nameLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 150),
+
+            statusTextField.bottomAnchor.constraint(equalTo: showButton.topAnchor, constant: -34),
+            statusTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 150),
+            
+            showButton.heightAnchor.constraint(equalToConstant: 50),
+            showButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
+            showButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            showButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+         ])
     }
     
     @objc func buttonPressed() {
         print(self.statusTextField.text ?? "no input")
-        }
+        statusTextField.resignFirstResponder()
+    }
+        
 }
 
 
