@@ -54,6 +54,7 @@ class ProfileHeaderView: UIView {
        return avatarImage
      }()
     
+<<<<<<< HEAD
     
     lazy var fullNameLabel: UILabel = {
         let fullNameLabel = UILabel()
@@ -70,6 +71,15 @@ class ProfileHeaderView: UIView {
         statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         return statusLabel
+=======
+    lazy var nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.text = "Badass cat"
+        nameLabel.textColor = .black
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        return nameLabel
+>>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
     }()
     
     lazy var statusTextField: UITextField = {
@@ -81,10 +91,15 @@ class ProfileHeaderView: UIView {
         statusTextField.layer.cornerRadius = 14
         statusTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusTextField.placeholder = "Write something here..."
+<<<<<<< HEAD
         statusTextField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10, height: 40))
         statusTextField.leftViewMode = .always
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+=======
+        statusTextField.resignFirstResponder()
+
+>>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
         return statusTextField
     }()
     
@@ -130,6 +145,7 @@ class ProfileHeaderView: UIView {
         statusTextField.resignFirstResponder()
     }
     
+<<<<<<< HEAD
     private var statusText: String = ""
     
     @objc func statusTextChanged() {
@@ -140,6 +156,53 @@ class ProfileHeaderView: UIView {
         
     }
     
+=======
+    private func createSubviews() {
+        addSubview(avatarImage)
+        addSubview(nameLabel)
+        addSubview(statusTextField)
+        addSubview(showButton)
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        statusTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        showButton.translatesAutoresizingMaskIntoConstraints = false
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarImage.widthAnchor.constraint(equalToConstant: 120),
+            avatarImage.heightAnchor.constraint(equalToConstant: 120),
+            
+            nameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
+            nameLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 150),
+
+            statusTextField.bottomAnchor.constraint(equalTo: showButton.topAnchor, constant: -34),
+            statusTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 150),
+            
+            showButton.heightAnchor.constraint(equalToConstant: 50),
+            showButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
+            showButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            showButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+         ])
+    }
+    
+    @objc func buttonPressed() {
+        print(self.statusTextField.text ?? "no input")
+        statusTextField.resignFirstResponder()
+    }
+        
+>>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
 }
 
 

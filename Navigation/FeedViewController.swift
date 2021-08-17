@@ -55,20 +55,41 @@ final class FeedViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-       
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.addSubview(buttonsStackView)
-       
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+
 //        setConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "post" else {

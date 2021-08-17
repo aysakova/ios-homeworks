@@ -16,16 +16,23 @@ class ProfileVIewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+<<<<<<< HEAD
 
+=======
+>>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+<<<<<<< HEAD
 
+=======
+>>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
     }
         
     override func viewDidLoad() {
         self.view.backgroundColor = .lightGray
+<<<<<<< HEAD
         view.addSubview(headerView)
         view.addSubview(newButton)
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +55,19 @@ class ProfileVIewController: UIViewController {
             newButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             newButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+=======
+            view.addSubview(headerView)
+    }
+
+    override func viewWillLayoutSubviews() {
+        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.width / 2
+        headerView.frame = self.view.frame
+        
+        NSLayoutConstraint.activate([
+            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+>>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
         ])
     }
+    
 }
