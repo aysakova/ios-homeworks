@@ -11,7 +11,6 @@ import UIKit
 
 class ProfileVIewController: UIViewController, UITableViewDelegate {
     
-    let cellID = "cellID"
     let myTableView = UITableView(frame: .zero, style: .plain)
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -26,7 +25,7 @@ class ProfileVIewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         setupTableView()
         setConstraints()
-        myTableView.dataSource = self
+//        myTableView.dataSource = self
     }
     
     func setupTableView() {
@@ -55,12 +54,10 @@ extension ProfileVIewController: UITableViewDataSource{
         // TODO
         return 5
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO
         let cell = UITableViewCell()
-        tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = "\(indexPath.section) \(indexPath.row)"
         return cell
     }
 }
