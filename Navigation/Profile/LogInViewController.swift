@@ -72,27 +72,6 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         logInButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        setupViews()
-    }
-    
-    override func viewWillLayoutSubviews() {
-//        setupLayout()
-    }
-
-    @objc func buttonPressed() {
-        let profileVC = ProfileVIewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
-        print("Button pressed")
-    }
-    // MARK: Constraints
-    private func setupViews() {
-        
-        view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
@@ -100,6 +79,54 @@ class LogInViewController: UIViewController {
         containerView.addSubview(loginTextField)
         containerView.addSubview(passwordTextField)
         containerView.addSubview(logInButton)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func buttonPressed() {
+        let profileVC = ProfileVIewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        print("Button pressed")
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyBoardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyBoardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyBoardSize.height, right: 0)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+            scrollView.contentInset.bottom = .zero
+            scrollView.verticalScrollIndicatorInsets.bottom = .zero
+    }
+    
+    // MARK: Constraints
+    private func setupViews() {
+        
+        view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = true
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
