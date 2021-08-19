@@ -9,65 +9,58 @@
 import Foundation
 import UIKit
 
-class ProfileVIewController: UIViewController {
+class ProfileVIewController: UIViewController, UITableViewDelegate {
     
-    let headerView = ProfileHeaderView()
-    let newButton = UIButton()
+    let cellID = "cellID"
+    let myTableView = UITableView(frame: .zero, style: .plain)
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-<<<<<<< HEAD
-
-=======
->>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-<<<<<<< HEAD
-
-=======
->>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
     }
-        
+ 
+    
     override func viewDidLoad() {
-        self.view.backgroundColor = .lightGray
-<<<<<<< HEAD
-        view.addSubview(headerView)
-        view.addSubview(newButton)
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        newButton.backgroundColor = .systemRed
-        newButton.setTitle("New button", for: .normal)
-        
-        headerView.avatarImage.layer.cornerRadius = 60
-        
-        newButton.backgroundColor = .systemRed
-        newButton.setTitle("New button", for: .normal)
-        
-        headerView.avatarImage.layer.cornerRadius = 60
-        
-        NSLayoutConstraint.activate([
-            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 220),
-            newButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            newButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-=======
-            view.addSubview(headerView)
-    }
-
-    override func viewWillLayoutSubviews() {
-        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.width / 2
-        headerView.frame = self.view.frame
-        
-        NSLayoutConstraint.activate([
-            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
->>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
-        ])
+        setupTableView()
+        setConstraints()
+        myTableView.dataSource = self
     }
     
+    func setupTableView() {
+        view.addSubview(myTableView)
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
+        myTableView.frame = view.frame
+            
+    
+    }
+    func setConstraints() {
+        let constraints = [
+            myTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            myTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            myTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            myTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+}
+
+extension ProfileVIewController: UITableViewDataSource{
+
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // TODO
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // TODO
+        let cell = UITableViewCell()
+        tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        cell.textLabel?.text = "\(indexPath.section) \(indexPath.row)"
+        return cell
+    }
 }
