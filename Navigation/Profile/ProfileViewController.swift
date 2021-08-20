@@ -12,6 +12,7 @@ import UIKit
 class ProfileVIewController: UIViewController, UITableViewDelegate {
     
     let myTableView = UITableView(frame: .zero, style: .plain)
+    let navigationBar = UINavigationBar()
     
     override func viewDidLoad() {
         setupTableView()

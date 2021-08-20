@@ -53,6 +53,9 @@ class LogInViewController: UIViewController {
     var logInButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        
+        if button.state != .normal { button.alpha = 0.8 }
+        
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.setTitle("Log In", for: .normal)
