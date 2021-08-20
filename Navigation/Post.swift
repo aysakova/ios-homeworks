@@ -15,7 +15,7 @@ struct Post {
     let views: Int
 }
 
-let postPolitics = Post(author: "Famous politicion", description: "What's the world coming to?\nWe have no clue what's going to hapeen next.", image: "politics", likes: 5, views: 5)
+let postPolitics = Post(author: "Famous politician", description: "What's the world coming to?\nWe have no clue what's going to hapeen next.", image: "politics", likes: 5, views: 5)
 
 let postEconomics = Post(author: "Famous economist", description: "S&P500 crashed amidst threat of nuclear attack from Wakanda government.", image: "economics", likes: 20, views: 20)
 

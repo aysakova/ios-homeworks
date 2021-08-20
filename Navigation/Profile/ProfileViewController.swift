@@ -13,15 +13,6 @@ class ProfileVIewController: UIViewController, UITableViewDelegate {
     
     let myTableView = UITableView(frame: .zero, style: .plain)
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
- 
-    
     override func viewDidLoad() {
         setupTableView()
         setConstraints()

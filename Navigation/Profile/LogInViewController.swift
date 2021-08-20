@@ -60,14 +60,7 @@ class LogInViewController: UIViewController {
         
         return button
     }()
- // MARK: Inits
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,9 +150,9 @@ class LogInViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            logInButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
-            logInButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            logInButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
         
         ])
     }
