@@ -11,8 +11,6 @@ import UIKit
 
 class ProfileVIewController: UIViewController {
     
-    let headerView = ProfileHeaderView()
-    
     let myTableView = UITableView(frame: .zero, style: .plain)
     let cellID = "cellID"
     
@@ -25,11 +23,8 @@ class ProfileVIewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super .viewDidLayoutSubviews()
-        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.height / 2
-        headerView.avatarImage.layer.masksToBounds = true
     }
 }
-
 
 
 
@@ -70,8 +65,9 @@ extension ProfileVIewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = ProfileHeaderView()
-        return view
+        let headerView = ProfileHeaderView()
+        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.width / 2
+        return headerView
     }
 }
 

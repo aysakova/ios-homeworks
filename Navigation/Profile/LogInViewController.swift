@@ -87,7 +87,6 @@ class LogInViewController: UIViewController {
     @objc func buttonPressed() {
         let profileVC = ProfileVIewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
-        print("Button pressed")
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {

@@ -36,7 +36,7 @@ class ProfileHeaderView: UIView {
 
     
     var avatarImage: UIImageView = {
-        let avatarImage = UIImageView()
+        let avatarImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         avatarImage.image = UIImage(named: "roxy")
         avatarImage.layer.borderWidth = 3
         avatarImage.layer.cornerRadius = avatarImage.frame.width / 2
@@ -95,7 +95,11 @@ class ProfileHeaderView: UIView {
         return setStatusButton
     }()
     
+    
     private func setupView() {
+        
+        avatarImage.layer.cornerRadius = avatarImage.frame.width / 2
+        avatarImage.layer.masksToBounds = true
         
         self.backgroundColor = .systemGray6
         [
