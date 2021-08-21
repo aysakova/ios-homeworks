@@ -68,17 +68,6 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         logInButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        
-        view.addSubview(scrollView)
-        scrollView.addSubview(containerView)
-        containerView.addSubview(logoImageView)
-        containerView.addSubview(loginTextField)
-        containerView.addSubview(passwordTextField)
-        containerView.addSubview(logInButton)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
         setupViews()
     }
     
@@ -120,9 +109,20 @@ class LogInViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.addSubview(logoImageView)
+        containerView.addSubview(loginTextField)
+        containerView.addSubview(passwordTextField)
+        containerView.addSubview(logInButton)
+        
+        let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.tabBarController!.tabBar.frame.height, right: 0)
+        self.scrollView.contentInset = adjustForTabbarInsets
+        self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets
         
         NSLayoutConstraint.activate([
             
@@ -134,7 +134,7 @@ class LogInViewController: UIViewController {
             containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             logoImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -155,7 +155,8 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
-            logInButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
+            logInButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            logInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -400)
         
         ])
     }
