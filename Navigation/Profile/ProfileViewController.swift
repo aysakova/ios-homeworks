@@ -9,47 +9,74 @@
 import Foundation
 import UIKit
 
-class ProfileVIewController: UIViewController, UITableViewDelegate {
+class ProfileVIewController: UIViewController {
+    
+    let headerView = ProfileHeaderView()
     
     let myTableView = UITableView(frame: .zero, style: .plain)
-    let navigationBar = UINavigationBar()
+    let cellID = "cellID"
     
     override func viewDidLoad() {
         setupTableView()
-        setConstraints()
-//        myTableView.dataSource = self
+        myTableView.dataSource = self
+        myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellID)
+        myTableView.delegate = self
     }
     
+    override func viewDidLayoutSubviews() {
+        super .viewDidLayoutSubviews()
+        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.height / 2
+        headerView.avatarImage.layer.masksToBounds = true
+    }
+}
+
+
+
+
+
+
+extension ProfileVIewController {
     func setupTableView() {
         view.addSubview(myTableView)
         myTableView.translatesAutoresizingMaskIntoConstraints = false
         myTableView.frame = view.frame
-            
-    
-    }
-    func setConstraints() {
-        let constraints = [
+        view.backgroundColor = .systemGray6
+        
+        
+        NSLayoutConstraint.activate([
             myTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             myTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             myTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             myTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ]
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
-    
 }
 
-extension ProfileVIewController: UITableViewDataSource{
 
 
+
+
+
+
+extension ProfileVIewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO
-        return 5
+        return Storage.arrayOfPosts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PostTableViewCell
+        cell.post = Storage.arrayOfPosts[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = ProfileHeaderView()
+        return view
+    }
+}
+
+extension ProfileVIewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
