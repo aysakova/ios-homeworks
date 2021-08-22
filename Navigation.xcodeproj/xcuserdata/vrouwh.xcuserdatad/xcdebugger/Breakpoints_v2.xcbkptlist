@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C9BFD290-78FF-41DF-80E8-46CC93F5ED3D"
-            shouldBeEnabled = "Yes"
+            uuid = "86087775-F99D-4AA6-8C83-823A3BD6F45C"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Navigation/Profile/ProfileHeaderView.swift"
+            filePath = "Navigation/Profile/LogInViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "setupLayout()"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "setupViews()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

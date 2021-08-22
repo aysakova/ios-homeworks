@@ -11,63 +11,68 @@ import UIKit
 
 class ProfileVIewController: UIViewController {
     
-    let headerView = ProfileHeaderView()
-    let newButton = UIButton()
+    let myTableView = UITableView(frame: .zero, style: .plain)
+    let cellID = "cellID"
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-<<<<<<< HEAD
-
-=======
->>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-<<<<<<< HEAD
-
-=======
->>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
-    }
-        
     override func viewDidLoad() {
-        self.view.backgroundColor = .lightGray
-<<<<<<< HEAD
-        view.addSubview(headerView)
-        view.addSubview(newButton)
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        newButton.backgroundColor = .systemRed
-        newButton.setTitle("New button", for: .normal)
-        
-        headerView.avatarImage.layer.cornerRadius = 60
-        
-        newButton.backgroundColor = .systemRed
-        newButton.setTitle("New button", for: .normal)
-        
-        headerView.avatarImage.layer.cornerRadius = 60
-        
-        NSLayoutConstraint.activate([
-            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 220),
-            newButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            newButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-=======
-            view.addSubview(headerView)
+        setupTableView()
+        myTableView.dataSource = self
+        myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellID)
+        myTableView.delegate = self
     }
+    
+    override func viewDidLayoutSubviews() {
+        super .viewDidLayoutSubviews()
+    }
+}
 
-    override func viewWillLayoutSubviews() {
-        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.width / 2
-        headerView.frame = self.view.frame
+
+
+
+
+extension ProfileVIewController {
+    func setupTableView() {
+        view.addSubview(myTableView)
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
+        myTableView.frame = view.frame
+        view.backgroundColor = .systemGray6
+        
         
         NSLayoutConstraint.activate([
-            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
->>>>>>> c0bf3a594808f356cb5e2a6d8838fcaaa7cef329
+            myTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            myTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            myTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            myTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
+}
+
+
+
+
+
+
+
+extension ProfileVIewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Storage.arrayOfPosts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PostTableViewCell
+        cell.post = Storage.arrayOfPosts[indexPath.row]
+        return cell
+    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = ProfileHeaderView()
+        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.width / 2
+        return headerView
+    }
+}
+
+extension ProfileVIewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
