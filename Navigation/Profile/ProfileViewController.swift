@@ -11,13 +11,27 @@ import UIKit
 
 class ProfileVIewController: UIViewController {
     
-    let myTableView = UITableView(frame: .zero, style: .plain)
-    let cellID = "cellID"
+    private let myTableView = UITableView(frame: .zero, style: .plain)
+//    private let cellID = "cellID"
+    
+    private enum Section {
+        case Photos, Posts, unknown
+        
+        init(section: Int) {
+            switch section {
+            case 0: self = .Photos
+            case 1: self = .Posts
+            default: self = .unknown
+            }
+        }
+    }
     
     override func viewDidLoad() {
         setupTableView()
+//        myTableView.tableHeaderView = ProfileHeaderView()
         myTableView.dataSource = self
-        myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellID)
+        myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
+        myTableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         myTableView.delegate = self
     }
     
@@ -33,16 +47,20 @@ class ProfileVIewController: UIViewController {
 extension ProfileVIewController {
     func setupTableView() {
         view.addSubview(myTableView)
+        myTableView.tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
         myTableView.translatesAutoresizingMaskIntoConstraints = false
+//        headerView.translatesAutoresizingMaskIntoConstraints = false
         myTableView.frame = view.frame
         view.backgroundColor = .systemGray6
         
-        
         NSLayoutConstraint.activate([
+                
+            
             myTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             myTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             myTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             myTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
         ])
     }
 }
@@ -55,21 +73,42 @@ extension ProfileVIewController {
 
 extension ProfileVIewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
         return Storage.arrayOfPosts.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PostTableViewCell
-        cell.post = Storage.arrayOfPosts[indexPath.row]
-        return cell
+        
+        switch Section(section: indexPath.section) {
+        case .Photos:
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
+            return cell
+        case .Posts:
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            cell.post = Storage.arrayOfPosts[indexPath.row]
+            return cell
+        case .unknown:
+            return UITableViewCell()
+        }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = ProfileHeaderView()
-        headerView.avatarImage.layer.cornerRadius = headerView.avatarImage.frame.width / 2
+        guard section == 0 else { return nil }
         return headerView
     }
+    
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
 }
+
 
 extension ProfileVIewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
