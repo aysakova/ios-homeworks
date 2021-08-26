@@ -106,10 +106,12 @@ extension PostTableViewCell {
             
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
+            likesLabel.heightAnchor.constraint(equalToConstant: 16),
 
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            viewsLabel.heightAnchor.constraint(equalToConstant: 16),
             
         ])
     }
