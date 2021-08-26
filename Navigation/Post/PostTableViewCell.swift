@@ -70,7 +70,7 @@ class PostTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupView()
+//        setupView()
     }
     
     override func layoutSubviews() {
@@ -87,13 +87,17 @@ extension PostTableViewCell {
         contentView.addSubview(viewsLabel)
         
         NSLayoutConstraint.activate([
+            
+            
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            authorLabel.heightAnchor.constraint(equalToConstant: 20),
             
             postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12),
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor),
             
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

@@ -43,6 +43,14 @@ class ProfileVIewController: UIViewController {
         super.viewWillLayoutSubviews()
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationController?.navigationBar.isHidden = false
+        
+    }
+    
+    
 }
 
 

@@ -82,6 +82,7 @@ class LogInViewController: UIViewController {
         super.viewDidAppear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        navigationController?.navigationBar.isHidden = true
     }
 
     @objc func buttonPressed() {
@@ -105,7 +106,7 @@ class LogInViewController: UIViewController {
     private func setupViews() {
         
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         
         view.addSubview(scrollView)

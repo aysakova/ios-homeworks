@@ -75,16 +75,14 @@ class PhotosTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         constraints()
-        
-        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
         constraints()
-        
     }
+    
     
     
     private func setupView() {
@@ -104,8 +102,9 @@ class PhotosTableViewCell: UITableViewCell {
         
         
         private func constraints() {
+    
+        let constant = CGFloat(-12)
         let constraints = [
-        
             
             photosLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             photosLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
@@ -116,32 +115,30 @@ class PhotosTableViewCell: UITableViewCell {
             
             photoImageViewOne.leadingAnchor.constraint(equalTo: photosLabel.leadingAnchor),
             photoImageViewOne.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
-            photoImageViewOne.widthAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
-            photoImageViewOne.heightAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
+            photoImageViewOne.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
+            photoImageViewOne.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
             photoImageViewOne.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
 //            
             photoImageViewTwo.leadingAnchor.constraint(equalTo: photoImageViewOne.trailingAnchor, constant: 8),
             photoImageViewTwo.topAnchor.constraint(equalTo: photoImageViewOne.topAnchor),
-            photoImageViewTwo.widthAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
-            photoImageViewTwo.heightAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
+            photoImageViewTwo.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
+            photoImageViewTwo.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
             photoImageViewTwo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
 //            
             photoImageViewThree.leadingAnchor.constraint(equalTo: photoImageViewTwo.trailingAnchor, constant: 8),
             photoImageViewThree.topAnchor.constraint(equalTo: photoImageViewTwo.topAnchor),
-            photoImageViewThree.widthAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
-            photoImageViewThree.heightAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
+            photoImageViewThree.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
+            photoImageViewThree.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
             photoImageViewThree.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
 //            
             photoImageViewFour.leadingAnchor.constraint(equalTo: photoImageViewThree.trailingAnchor, constant: 8),
             photoImageViewFour.topAnchor.constraint(equalTo: photoImageViewThree.topAnchor),
-            photoImageViewFour.widthAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
-            photoImageViewFour.heightAnchor.constraint(equalToConstant: (contentView.frame.width - 48) / 4),
+            photoImageViewFour.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
+            photoImageViewFour.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: constant),
             photoImageViewFour.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             
             
         ]
         NSLayoutConstraint.activate(constraints)
     }
-
-
 }
