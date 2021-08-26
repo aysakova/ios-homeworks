@@ -12,7 +12,6 @@ import UIKit
 class ProfileVIewController: UIViewController {
     
     private let myTableView = UITableView(frame: .zero, style: .plain)
-//    private let cellID = "cellID"
     
     private enum Section {
         case Photos, Posts, unknown
@@ -27,35 +26,31 @@ class ProfileVIewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        setupTableView()
-//        myTableView.tableHeaderView = ProfileHeaderView()
+        super.viewDidLoad()
         myTableView.dataSource = self
         myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         myTableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         myTableView.delegate = self
+        
+        view.addSubview(myTableView)
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGray6
+        
+        setupTableView()
     }
     
-    override func viewDidLayoutSubviews() {
-        super .viewDidLayoutSubviews()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
     }
 }
 
 
-
-
-
 extension ProfileVIewController {
     func setupTableView() {
-        view.addSubview(myTableView)
-        myTableView.tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
-        myTableView.translatesAutoresizingMaskIntoConstraints = false
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-        myTableView.frame = view.frame
-        view.backgroundColor = .systemGray6
         
         NSLayoutConstraint.activate([
                 
-            
             myTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             myTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             myTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -64,10 +59,6 @@ extension ProfileVIewController {
         ])
     }
 }
-
-
-
-
 
 
 
@@ -101,8 +92,6 @@ extension ProfileVIewController: UITableViewDataSource {
         return headerView
     }
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -113,5 +102,16 @@ extension ProfileVIewController: UITableViewDataSource {
 extension ProfileVIewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let galleryVC = PhotosViewController()
+        self.navigationController?.pushViewController(galleryVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }
