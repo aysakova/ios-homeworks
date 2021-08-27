@@ -78,6 +78,8 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				6A62792626C0F6790067030F /* ProfileViewController.swift */,
+				6A71F03326D36622007FBBDB /* PhotosViewController.swift */,
 				6A71F03526D37A74007FBBDB /* Post */,
 				6A71F02E26D35575007FBBDB /* Photos */,
 				6A62792126C0F61F0067030F /* Profile */,
@@ -98,8 +100,6 @@
 		6A62792126C0F61F0067030F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				6A62792626C0F6790067030F /* ProfileViewController.swift */,
-				6A71F03326D36622007FBBDB /* PhotosViewController.swift */,
 				6AFC1B1B26C5569A004C8A87 /* ProfileHeaderView.swift */,
 			);
 			path = Profile;

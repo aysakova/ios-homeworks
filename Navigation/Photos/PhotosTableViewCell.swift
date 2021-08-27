@@ -10,14 +10,6 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
-    var photo: String? {
-        didSet {
-            for index in 0 ... 3 {
-                photo = Photos.photos[index]
-            }
-        }
-    }
-    
     private lazy var photosLabel: UILabel = {
        let label = UILabel()
         label.text = "Photos"

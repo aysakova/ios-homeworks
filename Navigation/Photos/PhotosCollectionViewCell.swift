@@ -10,4 +10,39 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
+    var photo: Photos? {
+        didSet {
+            photoImageView.image = UIImage(named: photo!.image)
+        }
+    }
+    
+    private var photoImageView: UIImageView = {
+        let photo = UIImageView()
+        photo.translatesAutoresizingMaskIntoConstraints = false
+        return photo
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupViews() {
+        contentView.addSubview(photoImageView)
+        
+        let constraints = [
+            photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
 }
