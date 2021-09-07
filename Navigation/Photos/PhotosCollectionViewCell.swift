@@ -35,8 +35,15 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(photoImageView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
+            
+            contentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            contentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            contentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
             photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             photoImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),

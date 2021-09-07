@@ -45,7 +45,7 @@ class PhotosViewController: UIViewController {
         
         collectionView.frame = CGRect(x: view.safeAreaInsets.left + 8,
                                       y: view.safeAreaInsets.top + 8,
-                                      width: view.frame.width - 16,
+                                      width: view.frame.width - 16 - view.safeAreaInsets.right,
                                       height: view.frame.height - view.safeAreaInsets.top)
     }
     

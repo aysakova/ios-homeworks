@@ -31,6 +31,7 @@ class PhotosTableViewCell: UITableViewCell {
         
         let photo = UIImageView(image: UIImage(named: "one"))
         photo.backgroundColor = .black
+        photo.contentMode = .scaleAspectFit
         photo.translatesAutoresizingMaskIntoConstraints = false
         return photo
         
@@ -40,6 +41,7 @@ class PhotosTableViewCell: UITableViewCell {
         
         let photo = UIImageView(image: UIImage(named: "two"))
         photo.backgroundColor = .black
+        photo.contentMode = .scaleAspectFit
         photo.translatesAutoresizingMaskIntoConstraints = false
         return photo
         
@@ -49,6 +51,7 @@ class PhotosTableViewCell: UITableViewCell {
         
         let photo = UIImageView(image: UIImage(named: "three"))
         photo.backgroundColor = .black
+        photo.contentMode = .scaleAspectFit
         photo.translatesAutoresizingMaskIntoConstraints = false
         return photo
         
@@ -58,6 +61,7 @@ class PhotosTableViewCell: UITableViewCell {
         
         let photo = UIImageView(image: UIImage(named: "four"))
         photo.backgroundColor = .black
+        photo.contentMode = .scaleAspectFit
         photo.translatesAutoresizingMaskIntoConstraints = false
         return photo
         
