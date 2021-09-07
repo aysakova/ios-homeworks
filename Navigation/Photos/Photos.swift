@@ -14,7 +14,7 @@ struct Photos {
 struct PhotoStorage {
     static let photosForView: [Photos] = [
         Photos(image: "one"),
-        Photos (image: "two"),
+        Photos(image: "two"),
         Photos(image: "three"),
         Photos(image: "four"),
         Photos(image: "five"),

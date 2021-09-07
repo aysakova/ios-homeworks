@@ -24,6 +24,7 @@ class PostTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .green
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -70,10 +71,6 @@ class PostTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-//        setupView()
-    }
-    
-    override func layoutSubviews() {
         setupView()
     }
 }
@@ -88,15 +85,16 @@ extension PostTableViewCell {
         
         NSLayoutConstraint.activate([
             
+            contentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            contentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            contentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            authorLabel.heightAnchor.constraint(equalToConstant: 20),
             
             postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12),
-            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor),
             
@@ -106,13 +104,12 @@ extension PostTableViewCell {
             
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
-            likesLabel.heightAnchor.constraint(equalToConstant: 16),
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
 
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            viewsLabel.heightAnchor.constraint(equalToConstant: 16),
-            
         ])
     }
+    
 }
