@@ -20,15 +20,14 @@ class PostTableViewCell: UITableViewCell {
         }
     }
 
-    private lazy var postImageView: UIImageView = {
+    private var postImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .green
         image.contentMode = .scaleAspectFill
         return image
     }()
     
-    private lazy var authorLabel: UILabel = {
+    private var authorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -37,7 +36,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -46,7 +45,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var likesLabel: UILabel = {
+    private var likesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -55,7 +54,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var viewsLabel: UILabel = {
+    private var viewsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -83,33 +82,50 @@ extension PostTableViewCell {
         contentView.addSubview(likesLabel)
         contentView.addSubview(viewsLabel)
         
-        NSLayoutConstraint.activate([
-            
-            contentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            contentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            contentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
+        let constraints = [
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            
+
             postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12),
-            postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor),
+            postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1),
+//            postImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1),
+            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 12),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
 
-            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-        ])
-    }
-    
+        ]
+        constraints.forEach({$0.priority = UILayoutPriority(1000)})
+        NSLayoutConstraint.activate(constraints)
+        
+        let constraintsTwo:[NSLayoutConstraint] = []
+        constraintsTwo.forEach({$0.priority = UILayoutPriority(1000)})
+        NSLayoutConstraint.activate(constraintsTwo)
+        
+        
+//        let ch = postImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+//        ch.priority = UILayoutPriority(1000)
+//        ch.isActive = true
+
+        let ch = postImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor)
+        ch.priority = UILayoutPriority(999)
+        ch.isActive = true
+
+//        let cw = postImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+//        cw.priority = UILayoutPriority(999)
+//        cw.isActive = true
+
+        let t = descriptionLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 12)
+        t.priority = UILayoutPriority(1000)
+        t.isActive = true
+}
 }

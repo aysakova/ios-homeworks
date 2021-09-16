@@ -31,9 +31,7 @@ class ProfileVIewController: UIViewController {
         myTableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         myTableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         myTableView.delegate = self
-        
-        view.addSubview(myTableView)
-        myTableView.translatesAutoresizingMaskIntoConstraints = false
+
         view.backgroundColor = .systemGray6
         
         setupTableView()
@@ -56,6 +54,10 @@ class ProfileVIewController: UIViewController {
 
 extension ProfileVIewController {
     func setupTableView() {
+        
+        view.addSubview(myTableView)
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
+        myTableView.rowHeight = UITableView.automaticDimension
         
         NSLayoutConstraint.activate([
                 
@@ -103,7 +105,6 @@ extension ProfileVIewController: UITableViewDataSource {
     }
     
 }
-
 
 extension ProfileVIewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
