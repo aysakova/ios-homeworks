@@ -28,10 +28,10 @@ class PhotosTableViewCell: UITableViewCell {
     }()
     
     private lazy var photoStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [UIImageView(image: UIImage(named: "one")),
-                                                   UIImageView(image: UIImage(named: "two")),
-                                                   UIImageView(image: UIImage(named: "three")),
-                                                   UIImageView(image: UIImage(named: "four"))])
+        let stack = UIStackView()
+        for i in 0...3 {
+            stack.addArrangedSubview(UIImageView(image: UIImage(named: PhotoStorage.photosForView[i].image)))
+        }
         stack.contentMode = .scaleAspectFit
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal

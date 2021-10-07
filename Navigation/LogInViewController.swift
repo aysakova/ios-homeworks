@@ -83,7 +83,6 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.isHidden = true
     }
 
     @objc func buttonPressed() {

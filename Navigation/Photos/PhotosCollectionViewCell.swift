@@ -12,13 +12,14 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     var photo: Photos? {
         didSet {
-            photoImageView.image = UIImage(named: photo!.image)
+            photoImageView.image = UIImage(named: photo?.image ?? "")
         }
     }
     
     private var photoImageView: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
+        photo.contentMode = .scaleAspectFit
         return photo
     }()
     

@@ -46,10 +46,11 @@ class PhotosViewController: UIViewController {
         collectionView.frame = CGRect(x: view.safeAreaInsets.left + 8,
                                       y: view.safeAreaInsets.top + 8,
                                       width: view.frame.width - 16 - view.safeAreaInsets.right - view.safeAreaInsets.left,
-                                      height: view.frame.height - view.safeAreaInsets.top)
+                                      height: view.frame.height - 16 - view.safeAreaInsets.top)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
     }
 }
