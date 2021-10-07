@@ -10,17 +10,17 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let scrollView = UIScrollView()
-    let containerView = UIView()
+    private let scrollView = UIScrollView()
+    private let containerView = UIView()
     
-    var logoImageView: UIImageView = {
+    private var logoImageView: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
         logo.translatesAutoresizingMaskIntoConstraints = false
         return logo
     }()
     
-    var loginTextField: UITextField = {
+    private var loginTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .systemGray6
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10, height: 50))
@@ -34,7 +34,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    var passwordTextField: UITextField = {
+    private var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .systemGray6
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10, height: 50))
@@ -50,7 +50,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    var logInButton: UIButton = {
+    private var logInButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         
@@ -79,9 +79,10 @@ class LogInViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        navigationController?.navigationBar.isHidden = true
     }
 
     @objc func buttonPressed() {
@@ -105,7 +106,7 @@ class LogInViewController: UIViewController {
     private func setupViews() {
         
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         
         view.addSubview(scrollView)

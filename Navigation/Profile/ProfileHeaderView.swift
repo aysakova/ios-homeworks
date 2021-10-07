@@ -95,12 +95,13 @@ class ProfileHeaderView: UIView {
         return setStatusButton
     }()
     
+    override func layoutSubviews() {
+        avatarImage.layer.cornerRadius = avatarImage.frame.width / 2
+    }
     
     private func setupView() {
-        
         avatarImage.layer.cornerRadius = avatarImage.frame.width / 2
         avatarImage.layer.masksToBounds = true
-        
         self.backgroundColor = .systemGray6
         [
         avatarImage.widthAnchor.constraint(equalToConstant: 120),
